@@ -1,0 +1,63 @@
+type Mutation {
+  createPerson(data: PersonInput!): Person!
+  createPersons(data: [PersonInput!]!): [Person!]!
+  updatePersons(data: PersonPartialInput!, filters: PersonFilter): [Person!]!
+  deletePersons(filters: PersonFilter): [Person!]!
+}
+
+"""Person(id, fullname, dateofbirth, dlnumber)"""
+type Person {
+  id: ID!
+  fullname: String
+  dateofbirth: String
+  dlnumber: String
+}
+
+"""Person(id, fullname, dateofbirth, dlnumber)"""
+input PersonFilter {
+  id: ID
+  fullname: StrFilterLookup
+  dateofbirth: String
+  dlnumber: String
+}
+
+"""Person(id, fullname, dateofbirth, dlnumber)"""
+input PersonInput {
+  id: ID
+  fullname: String
+  dateofbirth: String
+  dlnumber: String
+}
+
+"""Person(id, fullname, dateofbirth, dlnumber)"""
+input PersonPartialInput {
+  id: ID
+  fullname: String
+  dateofbirth: String
+  dlnumber: String
+}
+
+type Query {
+  person(pk: ID): Person!
+  persons(filters: PersonFilter): [Person!]!
+}
+
+input StrFilterLookup {
+  exact: String
+  iExact: String
+  contains: String
+  iContains: String
+  inList: [String!]
+  gt: String
+  gte: String
+  lt: String
+  lte: String
+  startsWith: String
+  iStartsWith: String
+  endsWith: String
+  iEndsWith: String
+  range: [String!]
+  isNull: Boolean
+  regex: String
+  iRegex: String
+}
